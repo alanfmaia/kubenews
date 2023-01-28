@@ -1,0 +1,1 @@
+coloquei um gitignore para os arquivos tfstate pois contem as chaves ssh tambem 
