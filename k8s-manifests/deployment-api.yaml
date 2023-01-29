@@ -11,10 +11,15 @@ spec:
     metadata:
       labels:
         app: deploy-web-api
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: "/metrics"
     spec:
       containers:
       - name: web-api
         image: afmaia/kube-news:{{TAG}}
+               
         ports:
         - containerPort: 8080
         env:
