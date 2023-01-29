@@ -12,9 +12,7 @@ pipeline {
         }  
 
         stage ('Push Docker Image') {
-            environment{
-                tag_version = "${env.BUILD_ID}"
-            }
+
             steps {
                 script {
                     docker.withRegistry('https://registry.hub.docker.com', 'dockerhub'){
@@ -26,6 +24,9 @@ pipeline {
         }  
 
         stage ('Deploy Kubernetes') {
+                environment {
+                 tag_version = "${env.BUILD_ID}"
+            }
             steps {
                 withKubeConfig ([credentialsId: 'kubeconfig'])  {
                     sh 'sed -i "s/{{TAG}}/$tag_version/g" ./k8s-manifests/deployment-api.yaml'
