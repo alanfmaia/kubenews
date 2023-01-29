@@ -28,7 +28,7 @@ pipeline {
         stage ('Deploy Kubernetes') {
             steps {
                 withKubeConfig ([credentialsId: 'kubeconfig'])  {
-                    sh 'sed -i "s/{{TAG}}/$tag_version/g" ./k8s-manifests/'
+                    sh 'sed -i "s/{{TAG}}/$tag_version/g" ./k8s-manifests/deployment-api.yaml'
                     sh 'kubectl apply -f ./k8s-manifests/'
                 }              
             }
