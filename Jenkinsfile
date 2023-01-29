@@ -24,7 +24,7 @@ pipeline {
 
         stage ('Deploy Kubernetes') {
             steps {
-                withRegistry([credentialsID: 'kubeconfig'])  {
+                withKubeConfig ([credentialsID: 'kubeconfig'])  {
                     sh 'kubectl apply -f ./k8s-manifests/'
                 }              
             }
