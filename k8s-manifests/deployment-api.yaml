@@ -19,7 +19,7 @@ spec:
       containers:
       - name: web-api
         
-         image: afmaia/kube-news:v1
+        image: afmaia/kube-news:v1
         resources:
           limits:
             cpu: "100m"
